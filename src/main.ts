@@ -7,7 +7,7 @@ interface ApiResponse {
 }
 
 const fetchData = async (): Promise<ApiResponse[] | undefined> => {
-  const apiUrl: string = "usd_of";
+  const apiUrl: string = "usd";
   const proxyUrl: string = "https://bcra-proxy-cors.vercel.app";
 
   try {
@@ -38,7 +38,7 @@ document.querySelector('.btn')?.addEventListener('click', function () {
         let moneda: string = "dolares";
         if (Number(numero) == 1) { moneda = "dolar" }
         document.getElementById("resultado")!.innerText = `${numero} ${moneda} equivale a: ${resultado} pesos argentinos.`;
-        document.querySelector('.small')!.textContent = `(Cotizacion dolar oficial ${lastData.d})`
+        document.querySelector('.small')!.textContent = `(Cotizacion ${lastData.d})`
       }
     }
   });
