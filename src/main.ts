@@ -28,8 +28,7 @@ const fetchData = async (): Promise<ApiResponse[] | undefined> => {
   }
 };
 
-document.querySelector('.btn')?.addEventListener('click', function (event) {
-  event.preventDefault();
+document.querySelector('.btn')?.addEventListener('click', function () {
   fetchData().then((data) => {
     if (data) {
       const lastData = data.pop();
