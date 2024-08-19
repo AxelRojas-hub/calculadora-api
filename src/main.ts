@@ -38,7 +38,7 @@ document.querySelector('.btn')?.addEventListener('click', function () {
         let moneda: string = "dolares";
         if (Number(numero) == 1) { moneda = "dolar" }
         document.getElementById("resultado")!.innerText = `${numero} ${moneda} equivale a: ${resultado} pesos argentinos.`;
-        document.querySelector('.small')!.textContent = `(Cotizacion ${lastData.d} = ${lastData.v})`
+        document.querySelector('.small')!.textContent = `(Cotizacion Dolar Blue ${lastData.d} = ${lastData.v})`
       }
     }
   });
