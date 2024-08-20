@@ -6,7 +6,10 @@ interface ApiResponse {
   v: number;
 }
 
-const fetchData = async (): Promise<ApiResponse[] | undefined> => {
+let fetched = false; // Marca para saber si ya hizo fetch a la api
+let lastData: ApiResponse | undefined; // Almacena el ultimo elemento de la coll recibida
+
+async function fetchData(): Promise<void>{
   const apiUrl: string = "usd";
   const proxyUrl: string = "https://bcra-proxy-cors.vercel.app";
 
@@ -22,25 +25,32 @@ const fetchData = async (): Promise<ApiResponse[] | undefined> => {
     }
 
     const data: ApiResponse[] = await response.json();
-    return data;
+    lastData = data.pop();
+    fetched= true;
   } catch (error) {
     console.error(error);
   }
 };
 
+function realizarCalculo(): void{
+  if(lastData){
+    const numero= (document.getElementById("inputNumber")as HTMLInputElement).value;
+    const resultado = Number(numero)*lastData.v;
+    let moneda:string= "dolares";
+    if(Number(numero)=== 1){moneda = "dolar"};
+    document.getElementById("resultado")!.innerText =`${numero} ${moneda} equivale a: ${resultado} pesos argentinos.`;
+    document.querySelector('.small')!.textContent = `(Cotización Dólar Blue ${lastData.d} = ${lastData.v})`;
+  }
+}
+
 document.querySelector('.btn')?.addEventListener('click', function () {
-  fetchData().then((data) => {
-    if (data) {
-      const lastData = data.pop();
-      if (lastData) {
-        const numero = (document.getElementById("inputNumber") as HTMLInputElement).value;
-        const resultado = Number(numero) * lastData.v; // Ejemplo de cálculo
-        let moneda: string = "dolares";
-        if (Number(numero) == 1) { moneda = "dolar" }
-        document.getElementById("resultado")!.innerText = `${numero} ${moneda} equivale a: ${resultado} pesos argentinos.`;
-        document.querySelector('.small')!.textContent = `(Cotizacion Dolar Blue ${lastData.d} = ${lastData.v})`
-      }
-    }
-  });
+  if(!fetched){
+    fetchData().then(()=>{
+      console.log("hizo fetch");
+      realizarCalculo();
+    });
+  } else{
+    realizarCalculo();
+  }
 })
 
