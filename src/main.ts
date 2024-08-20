@@ -46,7 +46,6 @@ function realizarCalculo(): void{
 document.querySelector('.btn')?.addEventListener('click', function () {
   if(!fetched){
     fetchData().then(()=>{
-      console.log("hizo fetch");
       realizarCalculo();
     });
   } else{
