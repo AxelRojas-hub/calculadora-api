@@ -1,6 +1,3 @@
-import { token } from "./token";
-
-
 interface ApiResponse {
   d: string;
   v: number;
@@ -16,7 +13,7 @@ async function fetchData(): Promise<void>{
   try {
     const response = await fetch(`${proxyUrl}/${apiUrl}`, {
       headers: {
-        Authorization: `BEARER ${token}`,
+        Authorization: `BEARER ${import.meta.env.VITE_API_KEY}`,
       },
     });
 
@@ -30,6 +27,7 @@ async function fetchData(): Promise<void>{
   } catch (error) {
     console.error(error);
   }
+  console.log(import.meta.env.VITE_API_KEY)
 };
 
 function realizarCalculo(): void{
