@@ -27,6 +27,7 @@ async function fetchData(): Promise<void>{
   } catch (error) {
     console.error(error);
   }
+  console.log(import.meta.env.VITE_API_KEY)
   console.log(import.meta.env.MODE)
 };
 
