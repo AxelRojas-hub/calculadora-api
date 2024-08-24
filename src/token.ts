@@ -1,0 +1,2 @@
+export {token};
+const token:string= "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NTU0NzU0MTgsInR5cGUiOiJleHRlcm5hbCIsInVzZXIiOiJheGVsa2V2aW5hZ3VzdGlucm9qYXNAZ21haWwuY29tIn0.kEEdgZ5oyy4veCpGyGGpse_hqgfcSPVHpuaRcaNmRfbm2ISPqJH-v2aGgWQfHacKqFVaVLvTGoYZ72i3aPrshA";
